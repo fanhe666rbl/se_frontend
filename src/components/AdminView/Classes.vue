@@ -20,12 +20,12 @@
         tooltip-effect="dark"
         border
         style="width: 90%; margin: auto"
-        @selection-change="handleSelectionChange">
-      <el-table-column
-          type="selection"
-          width="60"
-      >
-      </el-table-column>
+        >
+<!--      <el-table-column-->
+<!--          type="selection"-->
+<!--          width="60"-->
+<!--      >-->
+<!--      </el-table-column>-->
       <el-table-column
           prop="id"
           label="ID"
@@ -37,17 +37,18 @@
       <el-table-column
           prop="name"
           label="班级名"
-          width="80"
+          width="280"
       >
       </el-table-column>
       <el-table-column
-          prop="info"
+          prop="description"
           label="班级简介"
-          width="120"
+          width="360"
+          show-overflow-tooltip
       >
       </el-table-column>
       <el-table-column
-          prop="course"
+          prop="courseId"
           label="所属课程"
           width="80"
           show-overflow-tooltip
@@ -78,14 +79,30 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-dialog
+        title="提示"
+        :visible.sync="dialogVisible"
+        width="50%"
+        :before-close="handleClose">
+      <span>这是一段信息</span>
+      <ClassEdit :classItem="classEditing"></ClassEdit>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="updateClass()">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import ClassEdit from "@/components/AdminView/ClassEdit";
 export default {
   name: "Classes",
+  components: {ClassEdit},
   data() {
     return {
+      dialogVisible:false,
+      classEditing:{},
       class_list:[
         {
           id:0,
@@ -107,36 +124,38 @@ export default {
     }
   },
   mounted() {
-    // this.getClasses()
+    this.getClasses()
   },
   methods: {
+    updateClass(){
+      alert(this.classEditing.name)
+    },
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+    },
     getClasses(){
       this.axios({
-        url:"/admin/class/",
+        url:"/admin/class/list",
         method:"get",
       }).then((res)=>{
-        this.class_list = res.data
+        console.log(res)
+        this.class_list = res.data.data
         console.log('admin classes', this.class_list)
       })
     },
-    handleButtonClick (e) {
-      console.log('e', e);
-      let target = e.target;
-      // 根据button组件内容 里面包括一个span标签，如果设置icon，则还包括一个i标签，其他情况请自行观察。
-      // 所以，在我们点击到button组件上的文字也就是span标签上时，直接执行e.target.blur()不会生效，所以要加一层判断。
-      if(target.nodeName === 'SPAN' || target.nodeName === 'I'){
-        target = e.target.parentNode;
-      }
-      target.blur();
-    },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
-    },
     handleEdit(index, row) {
+      this.classEditing = row
+      this.dialogVisible = true;
       console.log('editing', index, row);
     },
     handleAdd(index, row) {
       console.log('adding', index, row);
+      this.classEditing = {}
+      this.dialogVisible = true;
     },
     handleDelete(index, row) {
       console.log(index, row);

@@ -79,15 +79,14 @@ export default {
         console.log('login', r)
         if(r.status === 200){
           window.localStorage.setItem('token', r.data.token)
+          // this.axios({
+          //   url:"/user/info",
+          //   method:"get",
+          // }).then((res)=>{
+          //   console.log(res)
+          //   window.localStorage.setItem('user', res.data.data)
+          // })
           window.location.href = "/"
-          // console.log('gggg')
-          // let user = r.data;
-          // _this.user = user;
-          // console.log(user);
-          // localStorage.setItem("user",JSON.stringify(user));
-          // console.log(localStorage.getItem("user"));
-          // //this.$router.push("http://chenyangdu.xyz/cinema/home/")
-          // window.location.href = "http://chenyangdu.xyz/cinema/home?email="+user.email+"&name="+user.name+"&id="+user.id;
         }
       })
     },

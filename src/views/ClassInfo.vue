@@ -12,6 +12,7 @@
       <Info v-if="page === 'Info'"></Info>
       <Members v-if="page === 'Members'"></Members>
       <Homework v-if="page === 'Homework'"></Homework>
+      <Apply v-if="page === 'Apply'"></Apply>
 <!--      <div>{{classInfo.name}}</div>-->
 <!--      <div>{{classInfo.info}}</div>-->
     </div>
@@ -27,9 +28,10 @@ import axios from "axios";
 import Info from "@/components/ClassInfo/Info";
 import Members from "@/components/ClassInfo/Members";
 import Homework from "@/components/ClassInfo/Homework";
+import Apply from "@/components/ClassInfo/Apply";
 export default {
   name: "ClassView",
-  components: {Homework, Members, Info, TagsLeft, Header},
+  components: {Apply, Homework, Members, Info, TagsLeft, Header},
   data() {
     return {
       active: 0,
@@ -39,19 +41,13 @@ export default {
         {title: '班级信息', page: 'Info'},
         {title: '班级成员', page: 'Members'},
         {title: '班级作业', page: 'Homework'},
+        {title: '班级申请', page: 'Apply'},
       ],
       classInfo:{},
     }
   },
   mounted() {
-    // console.log(this.$route.query.classId)
-    // axios.get(
-    //     "/class/"+this.classId+"/info",
-    // ).then((res)=>{
-    //   console.log('class', res)
-    //   this.classInfo = res.data.data
-    //   console.log(this.classInfo)
-    // })
+    //添加权限控制
   },
   methods: {
     change(index, page){
@@ -77,7 +73,7 @@ export default {
   display: flex;
 }
 .content-right {
-  background-color: #E9EEF3;
+  //background-color: #E9EEF3;
   color: #333;
   width: 100%;
   height: auto;

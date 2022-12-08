@@ -1,11 +1,23 @@
 <template>
-<div>
+  <div>
     <el-table
         ref="multipleTable"
-        :data="classMembers"
+        :data="userApply"
         tooltip-effect="dark"
         border
         style="width: 90%; margin: auto">
+      <el-table-column
+          prop="id"
+          label="ApplyID"
+          sortable
+      >
+      </el-table-column>
+      <el-table-column
+          prop="user_Id"
+          label="userID"
+          sortable
+      >
+      </el-table-column>
       <el-table-column
           prop="studentId"
           label="学号"
@@ -13,44 +25,42 @@
       >
       </el-table-column>
       <el-table-column
-          prop="name"
-          label="名字"
+          prop="real_name"
+          label="真实姓名"
       >
       </el-table-column>
       <el-table-column
-          prop="type"
-          label="类型"
-          sortable
+          prop="username"
+          label="用户名"
       >
       </el-table-column>
       <el-table-column
-          prop="userId"
-          label="ID"
-          sortable
+          prop="info"
+          label="申请详情"
       >
       </el-table-column>
     </el-table>
-</div>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
 
 export default {
-  name: "Members",
+  name: "Apply",
   data(){
     return {
       classId: this.$route.query.classId,
-      classMembers: [],
+      userApply: [],
     }
   },
   mounted() {
     axios.get(
-        "/class/"+this.classId+"/member",
+        "/class/"+this.classId+"/user/apply",
     ).then((res)=>{
-      console.log('member', res)
-      this.classMembers = res.data.data
-      console.log(this.classMembers)
+      console.log('apply', res)
+      this.userApply = res.data.data
+      console.log(this.userApply)
     })
   }
 }
