@@ -10,6 +10,7 @@ module.exports = defineConfig({
           '^/proxy_url': '/' // 替换target中的请求地址，原请求为 http://127.0.0.1:8000/kuayu 实际请求为 http://127.0.0.1:8000/proxy_url/kuayu
         }
       }
-    }
+    },
+    hot: true,
   }
 })
