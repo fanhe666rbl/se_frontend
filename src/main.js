@@ -8,6 +8,10 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI)
 
+// ==============  表格无限滚动 ===============
+import ElTableInfiniteScroll from "el-table-infinite-scroll";
+Vue.directive("el-table-infinite-scroll", ElTableInfiniteScroll);
+
 // ==============  公共css引入 ===============
 import './assets/index.css'
 
@@ -15,7 +19,7 @@ import './assets/index.css'
 
 import axios from 'axios'
 
-axios.defaults.baseURL='/proxy_url';
+axios.defaults.baseURL = '/proxy_url';
 // axios.defaults.baseURL='http://82.157.254.225:8000';
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
