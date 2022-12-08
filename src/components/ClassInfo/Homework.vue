@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-table
-      :data="classProblems"
+      :data="problemFilter(classProblems)"
       :default-sort="{ prop: 'id', order: 'ascending' }"
       border
       style="width: 90%; margin: auto"
@@ -54,24 +54,36 @@ export default {
       curPage: 1,
       limit: 10,
       disabled: false,
+      userId: 123,
+      userLevel: -1, // 班级成员 0，管理员 1，创建者 2 非班级成员 -1
     };
   },
-  mounted() {
-    axios
-      .get("/class/" + this.classId + "/problem", {
-        params: {
-          page: 1,
-          limit: this.limit,
-        },
-      })
-      .then(res => {
-        if (res.data.data.length < this.limit) {
-          this.disabled = true;
-        }
-        console.log("prr", res);
-        this.classProblems = res.data.data;
-        console.log(this.classProblems);
-      });
+  async mounted() {
+    // FIXME where can we get `this.userId`?
+    await axios.get("/class/" + this.classId + "/user/" + this.userId + "/isClassMember", {}).then(res => {
+      this.userLevel = res.data.data;
+      // this.userLevel = 0;
+    });
+
+    if (this.userLevel == -1) {
+      this.$message.error("您不是班级成员，无法查看作业");
+    } else {
+      axios
+        .get("/class/" + this.classId + "/problem", {
+          params: {
+            page: 1,
+            limit: this.limit,
+          },
+        })
+        .then(res => {
+          if (res.data.data.length < this.limit || this.userLevel == -1) {
+            this.disabled = true;
+          }
+          console.log("prr", res);
+          this.classProblems = res.data.data;
+          console.log(this.classProblems);
+        });
+    }
   },
   methods: {
     getStatusType(status) {
@@ -101,6 +113,16 @@ export default {
           this.classProblems = this.classProblems.concat(res.data.data);
           console.log(this.classProblems);
         });
+    },
+    problemFilter(problems) {
+      switch (this.userLevel) {
+        case -1:
+          return [];
+        case 0:
+          return problems.filter(problem => problem.access != "private");
+        default:
+          return problems;
+      }
     },
   },
 };
