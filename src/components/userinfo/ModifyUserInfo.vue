@@ -22,10 +22,17 @@
           <el-input v-model="user.major" placeholder="请输入专业"></el-input>
         </el-form-item>
         <el-form-item label="个人描述">
-          <el-input v-model="user.description" type="textarea" :maxlength="300" placeholder="请输入个人描述" show-word-limit
-            resize="none"></el-input>
+          <el-input
+            v-model="user.description"
+            type="textarea"
+            :maxlength="300"
+            placeholder="请输入个人描述"
+            show-word-limit
+            resize="none"
+          ></el-input>
         </el-form-item>
-      </el-form><span slot="footer" class="dialog-footer">
+      </el-form>
+      <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="updateUserInfo">确 定</el-button>
       </span>
@@ -44,42 +51,45 @@ export default {
     return {
       dialogVisible: false,
       userInfo: {
-        nickname: '',
-        realname: '',
-        school: '',
-        student_id: '',
-        email: '',
-        major: '',
-        description: '',
-      }
-    }
+        nickname: "",
+        realname: "",
+        school: "",
+        student_id: "",
+        email: "",
+        major: "",
+        description: "",
+      },
+    };
   },
-  mounted() { this.userInfo = this.user },
+  mounted() {
+    this.userInfo = this.user;
+  },
   methods: {
     updateUserInfo() {
-      axios.put("/user/edit", {
-        nickname: this.user.nickname,
-        realname: this.user.realname,
-        school: this.user.school,
-        studentId: this.user.student_id,
-        email: this.user.email,
-        major: this.user.major,
-        description: this.user.description,
-      })
-        .then(res => {
+      axios
+        .put("/user/edit", {
+          nickname: this.user.nickname,
+          realname: this.user.realname,
+          school: this.user.school,
+          studentId: this.user.student_id,
+          email: this.user.email,
+          major: this.user.major,
+          description: this.user.description,
+        })
+        .then((res) => {
           console.log(res.data);
           if (res.data.status == 200) {
-            this.$message.success("用户信息更新成功")
+            this.$message.success("用户信息更新成功");
           } else {
-            this.user = this.userInfo
-            this.$message.error("用户信息更新失败")
+            this.user = this.userInfo;
+            this.$message.error("用户信息更新失败");
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
-        })
-      this.dialogVisible = false
-    }
-  }
-}
+        });
+      this.dialogVisible = false;
+    },
+  },
+};
 </script>

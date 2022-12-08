@@ -1,6 +1,6 @@
 <template>
   <el-card class="card">
-    <el-descriptions class="margin-top" title="个人信息" :column="3"  direction="vertical" border>
+    <el-descriptions class="margin-top" title="个人信息" :column="3" direction="vertical" border>
       <template slot="extra">
         <ModifyUserInfo :user="user" @userInfoUpdated="onUpdateUser" />
       </template>
@@ -30,8 +30,7 @@ export default {
       this.$emit("userInfoUpdated", userInfo);
     },
   },
-}
+};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

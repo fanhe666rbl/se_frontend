@@ -14,7 +14,7 @@ import axios from "axios";
 export default {
   components: {
     UserInfoCard,
-    Header
+    Header,
   },
   data() {
     return {
@@ -25,26 +25,26 @@ export default {
         student_id: "",
         email: "",
         major: "",
-        description: ""
-      }
+        description: "",
+      },
     };
   },
   mounted() {
     axios
       .get("/user/info")
-      .then(res => {
+      .then((res) => {
         this.user = res.data.data;
         console.log(this.user);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   },
   methods: {
     onUpdateUser(userInfo) {
       this.user = userInfo;
-    }
-  }
+    },
+  },
 };
 </script>
 
