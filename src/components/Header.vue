@@ -8,7 +8,7 @@
   </div>
 
   <div class="right">
-    <el-button class="button"  type="text" icon="el-icon-s-home" @click="link('/')">首页</el-button>
+    <el-button class="button"  type="text" icon="el-icon-user" @click="routeToUserInfo()">个人信息</el-button>
     <el-button class="button"  type="text" icon="el-icon-search" @click="isSearch=true">搜索</el-button>
   </div>
 </div>
@@ -26,6 +26,9 @@ export default {
     link(url){
       window.location.href = url;
     },
+    routeToUserInfo() {
+      this.$router.push({path: '/userinfo'});
+    }
   }
 }
 </script>

@@ -2,39 +2,56 @@
   <div>
     <Header></Header>
     <el-main class="main">
-      <el-card>
-        <el-descriptions class="margin-top" title="简介" :column="2" border>
-          <el-button type="primary" size="small">操作</el-button>
-          <el-descriptions-item label="昵称">昵称</el-descriptions-item>
-          <el-descriptions-item label="真实姓名">真实姓名</el-descriptions-item>
-          <el-descriptions-item label="学校">学校</el-descriptions-item>
-          <el-descriptions-item label="学号">学号</el-descriptions-item>
-          <el-descriptions-item label="邮箱">邮箱</el-descriptions-item>
-          <el-descriptions-item label="专业">专业</el-descriptions-item>
-        </el-descriptions>
-
-      </el-card>
+      <UserInfoCard :user="user" />
     </el-main>
   </div>
 </template>
-
 <script>
 import Header from "@/components/Header";
+import UserInfoCard from "@/components/userinfo/UserInfoCard";
+import axios from "axios";
 
 export default {
-  name: "UserInfoPage",
-  components: { Header },
-
-}
+  components: {
+    UserInfoCard,
+    Header
+  },
+  data() {
+    return {
+      user: {
+        nickname: "",
+        realname: "",
+        school: "",
+        student_id: "",
+        email: "",
+        major: "",
+        description: ""
+      }
+    };
+  },
+  mounted() {
+    axios
+      .get("/user/info")
+      .then(res => {
+        this.user = res.data.data;
+        console.log(this.user);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  methods: {
+    onUpdateUser(userInfo) {
+      this.user = userInfo;
+    }
+  }
+};
 </script>
 
 <style scoped>
 .main {
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #E9EEF3;
-  color: #333;
-  width: 100%;
+  width: 80%;
   height: auto;
+  margin: 0 auto;
 }
 </style>
