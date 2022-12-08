@@ -1,8 +1,12 @@
 <template>
-<div>
-  <div>{{classInfo.name}}</div>
-  <div>{{classInfo.info}}</div>
-</div>
+  <div class="container">
+    <el-card shadow="always" class="class-card">
+      <h1 class="class-name">{{ classInfo.name }}</h1>
+      <div class="class-info" v-if="classInfo.info != ''">
+        <v-html>{{ classInfo.info }}</v-html>
+      </div>
+    </el-card>
+  </div>
 </template>
 
 <script>
@@ -14,21 +18,44 @@ export default {
     return {
       classInfo: {},
       classId: this.$route.query.classId,
-    }
+    };
   },
   mounted() {
-    console.log(this.$route.query.classId)
-    axios.get(
-        "/class/"+this.classId+"/info",
-    ).then((res)=>{
-      console.log('class', res)
-      this.classInfo = res.data.data
-      console.log(this.classInfo)
-    })
+    console.log(this.$route.query.classId);
+    axios.get("/class/" + this.classId + "/info").then(res => {
+      console.log("class", res);
+      this.classInfo = res.data.data;
+      console.log(this.classInfo);
+    });
   },
-}
+};
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
 
+.class-card {
+  margin: 0 auto;
+  width: 85%;
+}
+
+.class-name {
+  font-family: serif;
+}
+
+.class-info {
+  background-color: #eee;
+  font-size: 18px;
+  box-sizing: border-box;
+  border: 1px solid rgba(102, 102, 102, 0.3);
+  padding: 1em;
+  text-align: justify;
+  white-space: pre-line;
+  line-height: 1.6em;
+}
 </style>
