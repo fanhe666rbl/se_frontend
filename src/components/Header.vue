@@ -3,8 +3,8 @@
   <div class="left">
     <div class="title">课程平台</div>
     <el-button class="menu-button"  type="text" icon="el-icon-s-home" @click="link('/')">首页</el-button>
-    <el-button class="menu-button"  type="text" icon="el-icon-search" @click="setPageNow('classes')">我的班级</el-button>
-    <el-button class="menu-button"  type="text" icon="el-icon-search" @click="setPageNow('courses')">课程总览</el-button>
+    <el-button class="menu-button"  type="text" icon="el-icon-search" @click="link('/classes')">我的班级</el-button>
+    <el-button class="menu-button"  type="text" icon="el-icon-search" @click="link('/courses')">课程总览</el-button>
   </div>
 
   <div class="right">
@@ -24,7 +24,7 @@ export default {
       'setPageNow'
     ]),
     link(url){
-      window.location.href = url;
+      this.$router.push({path: url});
     },
     routeToUserInfo() {
       this.$router.push({path: '/userinfo'});

@@ -29,9 +29,29 @@ const routes = [
     component: () => import('../views/HomePage.vue')
   },
   {
+    path: '/classes',
+    name: 'classes',
+    component: () => import('../views/ClassList.vue')
+  },
+  {
+    path: '/courses',
+    name: 'courses',
+    component: () => import('../views/CourseList.vue')
+  },
+  {
     path: '/userinfo',
     name: 'userInfoPage',
     component: () => import('../views/UserInfoPage.vue')
+  },
+  {
+    path: '/classInfo',
+    name: 'classInfo',
+    component: () => import('../views/ClassInfo.vue')
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('../views/AdminView.vue')
   }
 ]
 

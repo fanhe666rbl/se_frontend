@@ -1,19 +1,23 @@
 <template>
   <div>
-    <el-main class="main">
-      <div class="courseList" v-for="(classItem, index) in classList">
-        <ClassCard :classItem="classItem"></ClassCard>
-      </div>
-    </el-main>
+    <Header></Header>
+    <div>
+      <el-main class="main">
+        <div class="courseList" v-for="(classItem, index) in classList">
+          <ClassCard :classItem="classItem"></ClassCard>
+        </div>
+      </el-main>
+    </div>
   </div>
 </template>
 
 <script>
-import ClassCard from "@/components/ClassCard";
+import ClassCard from "@/components/ClassList/ClassCard";
 import axios from "axios";
+import Header from "@/components/Header";
 export default {
   name: "ClassList",
-  components: {ClassCard},
+  components: {Header, ClassCard},
   data(){
     return{
       classList: [],

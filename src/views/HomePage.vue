@@ -1,6 +1,6 @@
 <template>
 <div>
-  <Header></Header>
+<!--  <Header></Header>-->
   <course-list v-if="pageNow==='courses'"></course-list>
   <class-list v-if="pageNow==='classes'"></class-list>
 </div>
@@ -8,9 +8,9 @@
 
 <script>
 import Header from "@/components/Header";
-import CourseList from "@/components/CourseList";
+import CourseList from "@/views/CourseList";
 import {mapState} from "vuex";
-import ClassList from "@/components/ClassList";
+import ClassList from "@/views/ClassList";
 export default {
   name: "HomePage",
   components: {ClassList, CourseList, Header},

@@ -3,7 +3,7 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>{{ classItem.name }}</span>
-        <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+        <el-button style="float: right; padding: 3px 0" type="text" @click="link(classItem.id)">操作按钮</el-button>
       </div>
 
     </el-card>
@@ -15,6 +15,16 @@ export default {
   name: "ClassCard",
   props:{
     classItem: Object,
+  },
+  methods:{
+    link(classId){
+      this.$router.push({
+        path: '/classInfo',
+        query: {
+          classId: classId
+        }
+      })
+    }
   }
 }
 </script>
