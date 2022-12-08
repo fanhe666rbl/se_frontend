@@ -6,14 +6,14 @@
       <div class="form-container sign-up-container">
         <form autocomplete="off" @submit.prevent="regist_btn" >
           <h1>注册</h1>
-          <div class="social-container">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-          <span>或使用邮箱注册</span>
-          <input type="text" placeholder="姓名" v-model="name">
-          <input type="email" placeholder="电子邮箱" v-model="email">
+<!--          <div class="social-container">-->
+<!--            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>-->
+<!--            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>-->
+<!--            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>-->
+<!--          </div>-->
+<!--          <span>或使用邮箱注册</span>-->
+          <input type="text" placeholder="用户名" v-model="username">
+<!--          <input type="email" placeholder="电子邮箱" v-model="email">-->
           <input type="password" placeholder="密码" v-model="password">
           <button>注册</button>
         </form>
@@ -21,13 +21,13 @@
       <div class="form-container sign-in-container">
         <form autocomplete="off" @submit.prevent="login_btn" >
           <h1>登录</h1>
-          <div class="social-container">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-          <span>或使用您的帐号</span>
-          <input type="email" placeholder="邮箱" v-model="email">
+<!--          <div class="social-container">-->
+<!--            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>-->
+<!--            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>-->
+<!--            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>-->
+<!--          </div>-->
+<!--          <span>或使用您的帐号</span>-->
+          <input type="text" placeholder="用户名" v-model="username">
           <input type="password" placeholder="密码" v-model="password">
           <a>忘记密码？</a>
           <button >登录</button>
@@ -63,7 +63,7 @@ export default {
   data(){
     return{
       email:"",
-      name:"",
+      username:"",
       password:"",
       user:{}
     }
@@ -72,30 +72,35 @@ export default {
     login_btn(){
       let _this = this;
       axios.post("/login",{
-        email:_this.email,
+        username:_this.username,
         password:_this.password
       }).then((r)=>{
-        r = r.data;
-        if(r.code === 200){
-          let user = r.data;
-          _this.user = user;
-          console.log(user);
-          localStorage.setItem("user",JSON.stringify(user));
-          console.log(localStorage.getItem("user"));
-          //this.$router.push("http://chenyangdu.xyz/cinema/home/")
-          window.location.href = "http://chenyangdu.xyz/cinema/home?email="+user.email+"&name="+user.name+"&id="+user.id;
+        r = r.data
+        console.log('login', r)
+        if(r.status === 200){
+          window.localStorage.setItem('token', r.data.token)
+          window.location.href = "/"
+          // console.log('gggg')
+          // let user = r.data;
+          // _this.user = user;
+          // console.log(user);
+          // localStorage.setItem("user",JSON.stringify(user));
+          // console.log(localStorage.getItem("user"));
+          // //this.$router.push("http://chenyangdu.xyz/cinema/home/")
+          // window.location.href = "http://chenyangdu.xyz/cinema/home?email="+user.email+"&name="+user.name+"&id="+user.id;
         }
       })
     },
     regist_btn(){
       let _this = this;
-      axios.post("/regist",{
-        name:_this.name,
-        email:_this.email,
+      axios.post("/register",{
+        username:_this.username,
         password:_this.password
       }).then((r)=>{
-        r = r.data;
-        if(r.code === 200){
+        r = r.data
+        console.log('register', r)
+        // r = r.data;
+        if(r.status === 200){
           this.$message.success("注册成功！");
           this.login_btn()
         }else{

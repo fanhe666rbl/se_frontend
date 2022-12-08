@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header></Header>
     <el-main class="main">
       <div class="courseList" v-for="(course, index) in courseList">
         <CourseCard :course="course"></CourseCard>
@@ -52,7 +51,7 @@ export default {
           "/course/list",
       ).then((res)=>{
         this.courseList = res.data.data
-        console.log(this.courseList)
+        // console.log(this.courseList)
       })
     },
   }

@@ -1,8 +1,10 @@
 <template>
 <div class="header">
   <div class="left">
-    <span>left</span>
-<!--    <img src="../assets/AnHuaLogoWhite.svg" alt class="img">-->
+    <div class="title">课程平台</div>
+    <el-button class="menu-button"  type="text" icon="el-icon-s-home" @click="link('/')">首页</el-button>
+    <el-button class="menu-button"  type="text" icon="el-icon-search" @click="setPageNow('classes')">我的班级</el-button>
+    <el-button class="menu-button"  type="text" icon="el-icon-search" @click="setPageNow('courses')">课程总览</el-button>
   </div>
 
   <div class="right">
@@ -13,9 +15,14 @@
 </template>
 
 <script>
+import {mapMutations} from "vuex";
+
 export default {
   name: "Header",
   methods:{
+    ...mapMutations([
+      'setPageNow'
+    ]),
     link(url){
       window.location.href = url;
     },
@@ -25,7 +32,7 @@ export default {
 
 <style scoped>
 .header{
-  display: flex;
+  display: inline-block;
   //position: fixed;
   float: top;
   top: 0;
@@ -35,6 +42,14 @@ export default {
 }
 .left{
   float: left;
+}
+.title {
+  color: white;
+  float: left;
+  margin: 10px;
+}
+.menu-button {
+  margin-left: 40px;
 }
 .right{
   float: right;
