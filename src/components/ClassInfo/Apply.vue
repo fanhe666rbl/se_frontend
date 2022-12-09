@@ -39,13 +39,24 @@
           label="申请详情"
       >
       </el-table-column>
+      <el-table-column
+          label="操作"
+      >
+        <template slot-scope="scope">
+          <el-button
+              size="mini"
+              @click="handleApply(scope.$index, scope.row, 1)">同意</el-button>
+          <el-button
+              size="mini"
+              type="danger"
+              @click="handleApply(scope.$index, scope.row, 2)">拒绝</el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "Apply",
   data(){
@@ -55,13 +66,33 @@ export default {
     }
   },
   mounted() {
-    axios.get(
-        "/class/"+this.classId+"/user/apply",
-    ).then((res)=>{
-      console.log('apply', res)
-      this.userApply = res.data.data
-      console.log(this.userApply)
-    })
+    this.getApply()
+  },
+  methods:{
+    getApply(){
+      this.axios.get(
+          "/admin/class/"+this.classId+"/user/apply",
+      ).then((res)=>{
+        console.log('apply', res)
+        this.userApply = res.data.data
+        console.log(this.userApply)
+      })
+    },
+    handleApply(index, row, isAgree) {
+      console.log('accept', index, row);
+      this.axios({
+        url:"/admin/class/user/apply",
+        method:"post",
+        data:{
+          applyId: row.id,
+          isAgree: isAgree,
+        },
+      }).then((res)=>{
+        console.log('0aaa', res)
+        this.getApply()
+        this.dialogVisible = false;
+      })
+    },
   }
 }
 </script>

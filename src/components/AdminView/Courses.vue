@@ -67,7 +67,7 @@
       <CourseEdit :courseItem="courseEditing"></CourseEdit>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="updateClass()">确 定</el-button>
+        <el-button type="primary" @click="updateCourse()">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -83,14 +83,39 @@ export default {
       dialogVisible:false,
       courseEditing:{},
       course_list:[],
+      edit_mode:'',
     }
   },
   mounted() {
     this.getCourses()
   },
   methods: {
-    updateClass(){
-      alert(this.courseEditing.name)
+    updateCourse(){
+      if (this.edit_mode === 'add') {
+        this.axios({
+          url:"/admin/course/instance",
+          method:"post",
+          data:{
+            name: this.courseEditing.name,
+            description: this.courseEditing.description,
+            order: this.courseEditing.order,
+          },
+        }).then((res)=>{
+          console.log('0aaa', res)
+          this.getCourses()
+          this.dialogVisible = false;
+        })
+      }else if (this.edit_mode === 'edit') {
+        // this.axios({
+        //   url:"/admin/course/instance",
+        //   method:"post",
+        //   data:formData,
+        // }).then((res)=>{
+        //   console.log(res)
+        //   this.getCourses()
+        //   this.dialogVisible = false;
+        // })
+      }
     },
     handleClose(done) {
       this.$confirm('确认关闭？')
@@ -111,13 +136,15 @@ export default {
     },
     handleEdit(index, row) {
       this.courseEditing = row
+      this.edit_mode = 'edit'
       this.dialogVisible = true;
       console.log('editing', index, row);
     },
     handleAdd(index, row) {
-      console.log('adding', index, row);
       this.courseEditing = {}
+      this.edit_mode = 'add'
       this.dialogVisible = true;
+      console.log('adding', index, row);
     },
     handleDelete(index, row) {
       console.log(index, row);
@@ -126,7 +153,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        axios({
+        this.axios({
           url:"/admin/course/"+row.id,
           method:"delete",
         }).then((res)=>{
