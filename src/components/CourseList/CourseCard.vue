@@ -61,7 +61,7 @@ export default {
 
 <style scoped>
 .card {
-  border: 1px solid var(--green-color);
+  border: 1px solid var(--green-secondary-color);
   display: inline-flex;
   flex-direction: column;
   width: 240px;
@@ -79,7 +79,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: var(--green-color);
+  background-color: var(--green-secondary-color);
   color: #fff;
   text-align: left;
   font-size: 18px;
@@ -94,13 +94,13 @@ export default {
   padding: 1rem;
   flex-grow: 1;
   text-align: left;
-  border-bottom: 1px solid var(--green-color);
+  border-bottom: 1px solid var(--green-secondary-color);
 }
 
 .card-footer {
   padding: 1rem;
   font-size: 14px;
-  color: var(--green-color);
+  color: var(--green-secondary-color);
 }
 
 .card-footer:hover {
@@ -108,7 +108,7 @@ export default {
 }
 
 .course-item {
-  color: var(--green-color);
+  color: var(--green-secondary-color);
   font-size: 16px;
 }
 
