@@ -75,7 +75,7 @@ export default {
   position: absolute;
  margin-top: -20px;
   height: 120px;
-  left: 10px;
+  left: -10px;
   top: 20px;
   z-index: 2;
 }
@@ -100,7 +100,7 @@ export default {
   color: white;
   float: left;
   margin: 10px;
-  width: 350px;
+  width: 370px;
 }
 .button {
   width: 120px;
