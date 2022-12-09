@@ -81,6 +81,8 @@ export default {
           window.localStorage.setItem('token', r.data.token)
           window.localStorage.setItem('userId', r.data.uid)
           window.location.href = "/"
+        } else {
+          this.$message.error(r.msg)
         }
       })
     },
