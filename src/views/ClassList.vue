@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="page">
     <Header :active="'classes'"></Header>
+    <Banner :bannerType="'classes'"></Banner>
     <div>
       <el-main class="main">
         <div class="courseList" v-for="(classItem, index) in classList">
@@ -14,9 +15,10 @@
 <script>
 import ClassCard from "@/components/ClassList/ClassCard";
 import Header from "@/components/Header";
+import Banner from "@/components/Banner";
 export default {
   name: "ClassList",
-  components: {Header, ClassCard},
+  components: {Header, Banner, ClassCard},
   data(){
     return{
       classList: [],
@@ -40,10 +42,13 @@ export default {
 </script>
 
 <style scoped>
+.page {
+  background-color: #E9EEF3;
+}
 .main {
   display: flex;
   flex-wrap: wrap;
-  background-color: #E9EEF3;
+  background-color: white;
   color: #333;
   width: 72%;
   margin: -10px auto;

@@ -1,6 +1,7 @@
 <template>
 <div>
   <Header></Header>
+  <Banner :bannerType="'classes'"></Banner>
   <div class="main">
     <div class="menu-left">
       <tags-left v-for="(tag, index) in tags"
@@ -37,6 +38,7 @@
 
 <script>
 import Header from "@/components/Header";
+import Banner from "@/components/Banner";
 import TagsLeft from "@/components/ClassInfo/TagsLeft";
 import axios from "axios";
 import Info from "@/components/ClassInfo/Info";
@@ -46,7 +48,7 @@ import Apply from "@/components/ClassInfo/Apply";
 import AdminMembers from "@/components/ClassInfo/AdminMembers";
 export default {
   name: "ClassView",
-  components: {AdminMembers, Apply, Homework, Members, Info, TagsLeft, Header},
+  components: {AdminMembers, Apply, Homework, Members, Info, TagsLeft, Header, Banner},
   data() {
     return {
       active: 0,

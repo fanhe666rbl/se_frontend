@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="page">
     <Header :active="'courses'"></Header>
+    <Banner :bannerType="'courses'"></Banner>
     <div>
       <el-main class="main">
         <div class="courseList" v-for="(course, index) in courseList">
@@ -13,11 +14,12 @@
 
 <script>
 import Header from "@/components/Header";
+import Banner from "@/components/Banner";
 import CourseCard from "@/components/CourseList/CourseCard";
 import axios from "axios";
 export default {
   name: "CourseList",
-  components: { CourseCard, Header },
+  components: { CourseCard, Header, Banner},
   data() {
     return {
       courseL: new Array(14).fill({
@@ -60,10 +62,13 @@ export default {
 </script>
 
 <style scoped>
+.page {
+  background-color: #E9EEF3;
+}
 .main {
   display: flex;
   flex-wrap: wrap;
-  background-color: #e9eef3;
+  background-color: white;
   color: #333;
   width: 72%;
   margin: -10px auto;
