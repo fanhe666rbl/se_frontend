@@ -100,14 +100,20 @@ export default {
 .card-footer {
   padding: 1rem;
   font-size: 14px;
+  color: var(--green-color);
 }
 
 .card-footer:hover {
+  color: var(--orange-secondary-color);
+}
+
+.course-item {
   color: var(--green-color);
+  font-size: 16px;
 }
 
 .course-item:hover {
   cursor: pointer;
-  color: var(--green-color);
+  color: var(--orange-secondary-color);
 }
 </style>

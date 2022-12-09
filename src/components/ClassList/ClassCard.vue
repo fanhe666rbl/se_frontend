@@ -1,11 +1,12 @@
 <template>
   <div class="card">
-    <div class="card-header" @click="link(classItem.id)">
+    <div class="card-header">
       {{ classItem.name }}
     </div>
     <div class="card-body">
       {{ classItem.id }}
     </div>
+    <div class="card-footer" @click="link(classItem.id)">进入班级</div>
   </div>
 </template>
 
@@ -58,11 +59,6 @@ export default {
   text-overflow: ellipsis;
 }
 
-.card-header:hover {
-  cursor: pointer;
-  background-color: var(--orange-secondary-color);
-}
-
 ::-webkit-scrollbar {
   display: none;
 }
@@ -73,5 +69,16 @@ export default {
   flex-grow: 1;
   text-align: left;
   border-bottom: 1px solid var(--green-color);
+}
+
+.card-footer {
+  padding: 1rem;
+  font-size: 14px;
+  color: var(--green-color);
+}
+
+.card-footer:hover {
+  cursor: pointer;
+  color: var(--orange-secondary-color);
 }
 </style>
