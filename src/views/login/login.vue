@@ -79,6 +79,7 @@ export default {
         console.log('login', r)
         if(r.status === 200){
           window.localStorage.setItem('token', r.data.token)
+          window.localStorage.setItem('userId', r.data.uid)
           // this.axios({
           //   url:"/user/info",
           //   method:"get",

@@ -24,7 +24,10 @@
       <el-table-column label="难度" prop="difficulty" min-width="8%"></el-table-column>
       <el-table-column label="题目标签" min-width="15%">
         <template slot-scope="scope">
-          <el-tag v-for="tag in scope.row.tags" :key="tag" size="mini" class="problem-tag">{{ tag }}</el-tag>
+          <!-- <el-tag v-for="tag in scope.row.tags" :key="tag" size="mini" class="problem-tag">{{ tag }}</el-tag> -->
+          <el-tag size="mini" class="problem-tag" v-if="scope.row.tags.tagName != undefined">
+            {{ scope.row.tags.tagName }}
+          </el-tag>
         </template>
       </el-table-column>
       <el-table-column label="通过状态" min-width="10%">
@@ -59,10 +62,11 @@ export default {
     };
   },
   async mounted() {
-    // FIXME where can we get `this.userId`?
+    this.userId = window.localStorage.getItem("userId");
     await axios.get("/class/" + this.classId + "/user/" + this.userId + "/isClassMember", {}).then(res => {
       this.userLevel = res.data.data;
       // this.userLevel = 0;
+      console.log("userLevel: ", this.userLevel, "  userId: ", this.userId);
     });
 
     if (this.userLevel == -1) {

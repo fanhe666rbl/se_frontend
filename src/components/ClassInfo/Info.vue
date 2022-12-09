@@ -3,7 +3,7 @@
     <el-card shadow="always" class="class-card">
       <h1 class="class-name">{{ classInfo.name }}</h1>
       <div class="class-info" v-if="classInfo.info != ''">
-        <v-html>{{ classInfo.info }}</v-html>
+        {{ classInfo.info }}
       </div>
     </el-card>
     <el-button @click="submitApply()">申请加入课程</el-button>
