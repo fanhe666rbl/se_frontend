@@ -69,7 +69,8 @@ export default {
   top: 0;
   width: 100%;
   height: var(--height);
-  background-color: var(--green-color);
+  //background-color: var(--green-color);
+  background: linear-gradient(to right, var(--green-color), var(--green-secondary-color)) no-repeat 0 0 / cover;
 }
 .left {
   float: left;
@@ -85,17 +86,18 @@ export default {
   width: 120px;
   height: var(--height);
   line-height: var(--height);
-  background-color: white;
+  //background-color: white;
+  color: white;
   margin-left: 1px;
   transition: all 0.5s ease 0s;
-  opacity: 0.6;
+  //opacity: 0.4;
  }
 .button:hover {
   cursor: pointer;
-  height: calc(var(--height) - 2px);
+  height: var(--height);
   background-color: var(--orange-color);
   color: white;
-  border-bottom: var(--success_color) inset 2px;
+  //border-bottom: var(--success_color) inset 2px;
   opacity: 0.9;
 }
 .active {

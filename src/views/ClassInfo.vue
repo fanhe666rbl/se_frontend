@@ -10,7 +10,7 @@
     </div>
     <div class="content-right">
       <Info v-if="page === 'Info'"></Info>
-      <el-button v-if="userLevel === -1" @click="dialogVisible = true">申请加入课程</el-button>
+      <el-button class="apply-button" v-if="userLevel === -1" @click="dialogVisible = true">申请加入课程</el-button>
       <div v-if="page === 'Members'">
         <Members v-if="userLevel < 1"></Members>
         <AdminMembers v-else></AdminMembers>
@@ -131,5 +131,10 @@ export default {
   color: #333;
   width: 100%;
   height: auto;
+}
+.apply-button {
+  float: right;
+  margin-top: 50px;
+  margin-right: 80px;
 }
 </style>

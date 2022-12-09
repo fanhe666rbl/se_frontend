@@ -106,15 +106,20 @@ export default {
           this.dialogVisible = false;
         })
       }else if (this.edit_mode === 'edit') {
-        // this.axios({
-        //   url:"/admin/course/instance",
-        //   method:"post",
-        //   data:formData,
-        // }).then((res)=>{
-        //   console.log(res)
-        //   this.getCourses()
-        //   this.dialogVisible = false;
-        // })
+        this.axios({
+          url:"/admin/course/"+this.courseEditing.id+"/edit",
+          method:"put",
+          data:{
+            name: this.courseEditing.name,
+            description: this.courseEditing.description,
+            order: this.courseEditing.order,
+            createTime: this.courseEditing.createTime
+          },
+        }).then((res)=>{
+          console.log(res)
+          this.getCourses()
+          this.dialogVisible = false;
+        })
       }
     },
     handleClose(done) {

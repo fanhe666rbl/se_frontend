@@ -88,8 +88,10 @@ a {
 
 button {
     border-radius: 20px;
-    border: 1px solid #ff4b2b;
-    background: #ff4b2b;
+    /*border: 1px solid #ff4b2b;*/
+    /*background: #ff4b2b;*/
+    border: 1px solid var(--orange-color);
+    background: var(--orange-color);
     color: #fff;
     font-size: 12px;
     font-weight: bold;
@@ -145,8 +147,10 @@ button.ghost {
 }
 
 .overlay {
-    background: #ff416c;
-    background: linear-gradient(to right, #ff4b2b, #ff416c) no-repeat 0 0 / cover;
+    /*background: #ff416c;*/
+    background: var(--green-secondary-color);
+    /*background: linear-gradient(to right, #ff4b2b, #ff416c) no-repeat 0 0 / cover;*/
+    background: linear-gradient(to right, var(--green-color), var(--green-secondary-color)) no-repeat 0 0 / cover;
     color: #fff;
     position: relative;
     left: -100%;

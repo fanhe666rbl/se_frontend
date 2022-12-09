@@ -103,7 +103,7 @@ export default {
     return {
       dialogVisible:false,
       classEditing:{},
-      edit_model:'add',
+      edit_mode:'add',
       class_list:[
         {
           id:0,
@@ -129,9 +129,9 @@ export default {
   },
   methods: {
     updateClass(){
-      if (this.edit_model === 'add') {
+      if (this.edit_mode === 'add') {
         this.axios({
-          url:"/admin/class/instance",
+          url:"/admin/class/add",
           method:"post",
           data:{
             name: this.classEditing.name,
@@ -145,7 +145,7 @@ export default {
           this.getClasses()
           this.dialogVisible = false;
         })
-      }else if (this.edit_model === 'edit') {
+      }else if (this.edit_mode === 'edit') {
         this.axios({
           url:"/admin/class/"+this.classEditing.id+"/info",
           method:"put",

@@ -9,12 +9,14 @@
       <el-table-column
           prop="studentId"
           label="学号"
+          width="160"
           sortable
       >
       </el-table-column>
       <el-table-column
           prop="name"
           label="名字"
+          width="160"
       >
       </el-table-column>
       <el-table-column
@@ -30,7 +32,7 @@
       <el-table-column
           prop="userId"
           label="ID"
-          sortable
+          width="80"
       >
       </el-table-column>
       <el-table-column
@@ -41,6 +43,11 @@
               size="mini"
               v-if="scope.row.type === 0"
               @click="handleLevel(scope.$index, scope.row, 1)">升级管理员</el-button>
+          <el-button
+              size="mini"
+              type="danger"
+              v-if="scope.row.type === 0"
+              @click="handleDelete(scope.$index, scope.row, 1)">删除用户</el-button>
           <el-button
               size="mini"
               type="danger"
@@ -83,6 +90,14 @@ export default {
         data:{
           access: access,
         },
+      }).then((res)=>{
+        this.getMembers()
+      })
+    },
+    handleDelete(index, row, access) {
+      this.axios({
+        url:"/admin/class/"+this.classId+"/user/"+row.userId,
+        method:"delete",
       }).then((res)=>{
         this.getMembers()
       })

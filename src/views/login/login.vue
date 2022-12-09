@@ -13,6 +13,7 @@
 <!--          </div>-->
 <!--          <span>或使用邮箱注册</span>-->
           <input type="text" placeholder="用户名" v-model="username">
+          <input type="text" placeholder="真实姓名" v-model="realName">
 <!--          <input type="email" placeholder="电子邮箱" v-model="email">-->
           <input type="password" placeholder="密码" v-model="password">
           <button>注册</button>
@@ -65,6 +66,7 @@ export default {
       email:"",
       username:"",
       password:"",
+      realName:"",
       user:{}
     }
   },
@@ -88,7 +90,8 @@ export default {
       let _this = this;
       axios.post("/register",{
         username:_this.username,
-        password:_this.password
+        password:_this.password,
+        realName:_this.realName,
       }).then((r)=>{
         r = r.data
         console.log('register', r)
