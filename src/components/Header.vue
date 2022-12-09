@@ -9,7 +9,7 @@
     <div class="left title">课程平台</div>
     <div class="left button" :class="{active: active==='classes'}" @click="link('/classes')">我的班级</div>
     <div class="left button" :class="{active: active==='courses'}" @click="link('/courses')">课程总览</div>
-    <div class="left button">测试按钮</div>
+<!--    <div class="left button">测试按钮</div>-->
 
 
     <div class="right button" @click="routeToUserInfo()">个人信息</div>
