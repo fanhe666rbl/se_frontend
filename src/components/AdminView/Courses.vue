@@ -59,11 +59,10 @@
       </el-table-column>
     </el-table>
     <el-dialog
-        title="提示"
+        title="编辑课程信息"
         :visible.sync="dialogVisible"
         width="50%"
         :before-close="handleClose">
-      <span>这是一段信息</span>
       <CourseEdit :courseItem="courseEditing"></CourseEdit>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>

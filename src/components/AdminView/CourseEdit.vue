@@ -1,11 +1,11 @@
 <template>
-<div>
+<div class="form">
   <el-form  :label-position="'left'" label-width="120px">
     <el-form-item label="课程名称">
-      <el-input v-model="courseItem.name" placeholder="请输入班级名称"></el-input>
+      <el-input v-model="courseItem.name" placeholder="请输入课程名称"></el-input>
     </el-form-item>
-    <el-form-item label="order">
-      <el-input v-model="courseItem.order" placeholder="请输入order"></el-input>
+    <el-form-item label="排序">
+      <el-input v-model="courseItem.order" placeholder="请输入排序"></el-input>
     </el-form-item>
   </el-form>
   <el-form  size="large">
@@ -41,5 +41,8 @@ export default {
 </script>
 
 <style scoped>
-
+.form {
+  width: 80%;
+  margin-left: 10%;
+}
 </style>
