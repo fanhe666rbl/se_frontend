@@ -52,7 +52,7 @@ export default {
 .courseList {
   display: inline-block;
   width: 240px;
-  height: 180px;
+  height: 240px;
   margin: 30px;
 }
 </style>
