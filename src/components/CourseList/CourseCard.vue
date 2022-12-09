@@ -34,15 +34,6 @@ export default {
     };
   },
   methods: {
-    linkToClass(courseId) {
-      this.$router.push({
-        path: "/courseInfo",
-        query: {
-          courseId: courseId,
-        },
-      });
-    },
-
     linkToClass(classId) {
       this.$router.push({
         path: "/classInfo",

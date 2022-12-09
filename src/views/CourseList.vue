@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header></Header>
+    <Header :active="'courses'"></Header>
     <div>
       <el-main class="main">
         <div class="courseList" v-for="(course, index) in courseList">
