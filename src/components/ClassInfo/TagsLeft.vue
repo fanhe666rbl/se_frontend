@@ -44,11 +44,12 @@ export default {
   color: rgb(102, 102, 102);
 }
 .name_container_unactive:hover{
-  border: 1px solid rgb(0, 63, 119);
-  color: rgb(0, 63, 119);
+  border: 1px solid var(--orange-secondary-color);
+  color: var(--orange-secondary-color);
 }
 .name_container_active{
-  background: rgb(0, 63, 119);
+  background: var(--orange-color);
   color: rgb(255, 255, 255);
+  font-weight: bold;
 }
 </style>
