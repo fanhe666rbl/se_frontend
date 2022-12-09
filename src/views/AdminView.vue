@@ -1,6 +1,6 @@
 <template>
 <div>
-  <Header></Header>
+  <Header :active="'admin'"></Header>
   <Aside></Aside>
   <el-main class="main">
     <Classes v-if="pageNow === 'classes'"></Classes>

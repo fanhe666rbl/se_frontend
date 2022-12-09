@@ -44,6 +44,7 @@ export default {
   height: 198px;
   background-color: var(--green-color);
   opacity: 0.2;
+  z-index: 1;
 }
 .border {
   //position: absolute;

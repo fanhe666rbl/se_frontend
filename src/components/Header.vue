@@ -1,21 +1,19 @@
 <template>
   <div class="header">
-<!--    <div class="left">-->
-<!--      <div class="title">课程平台</div>-->
-<!--      <el-button class="menu-button" type="text" icon="el-icon-s-home" @click="link('/')">首页</el-button>-->
-<!--      <el-button class="menu-button" type="text" icon="el-icon-search" @click="link('/classes')">我的班级</el-button>-->
-<!--      <el-button class="menu-button" type="text" icon="el-icon-search" @click="link('/courses')">课程总览</el-button>-->
-<!--    </div>-->
-    <div class="left title">课程平台</div>
+
+    <div v-if="active !== 'admin'" class="left title">
+      <img class="img" :src="titleImg" />
+    </div>
+    <div v-if="active === 'admin'" class="left title">
+      <img class="imgAdmin" :src="titleImg" />
+    </div>
     <div class="left button" :class="{active: active==='classes'}" @click="link('/classes')">我的班级</div>
     <div class="left button" :class="{active: active==='courses'}" @click="link('/courses')">课程总览</div>
-<!--    <div class="left button">测试按钮</div>-->
+
 
 
     <div class="right button" @click="routeToUserInfo()">个人信息</div>
-<!--    <div class="right button" slot="reference" >测试按钮</div>-->
-<!--    <div class="right">-->
-<!--      <el-button class="menu-button" type="text" icon="el-icon-user" @click="routeToUserInfo()">个人信息</el-button>-->
+
       <el-popconfirm
           class="right "
         confirm-button-text="确定"
@@ -26,20 +24,26 @@
         title="您确定要退出登录吗？"
         @confirm="logout"
       >
-<!--        <el-button slot="reference" class="menu-button" type="text" icon="el-icon-switch-button"> 退出登录 </el-button>-->
+
         <div class="button" slot="reference" >退出登录</div>
       </el-popconfirm>
-<!--    </div>-->
+
   </div>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
+import titleImg  from '@/assets/Title.png'
 
 export default {
   name: "Header",
   props:{
     active: String,
+  },
+  data() {
+    return {
+      titleImg:titleImg,
+    }
   },
   methods: {
     ...mapMutations(["setPageNow"]),
@@ -59,6 +63,22 @@ export default {
 </script>
 
 <style scoped>
+.imgAdmin {
+  //position: absolute;
+  margin-top: -20px;
+  height: 65px;
+  left: 10px;
+  top: 20px;
+  z-index: 2;
+}
+.img {
+  position: absolute;
+ margin-top: -20px;
+  height: 120px;
+  left: 10px;
+  top: 20px;
+  z-index: 2;
+}
 
 .header{
   --height:50px;
@@ -80,7 +100,7 @@ export default {
   color: white;
   float: left;
   margin: 10px;
-  width: 200px;
+  width: 350px;
 }
 .button {
   width: 120px;
