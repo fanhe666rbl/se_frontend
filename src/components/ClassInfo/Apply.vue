@@ -9,24 +9,25 @@
       <el-table-column
           prop="id"
           label="ApplyID"
-          sortable
+          width="80"
       >
       </el-table-column>
       <el-table-column
           prop="user_Id"
           label="userID"
-          sortable
+          width="80"
       >
       </el-table-column>
       <el-table-column
           prop="studentId"
           label="学号"
-          sortable
+          width="120"
       >
       </el-table-column>
       <el-table-column
           prop="real_name"
           label="真实姓名"
+          width="120"
       >
       </el-table-column>
       <el-table-column
@@ -37,10 +38,12 @@
       <el-table-column
           prop="info"
           label="申请详情"
+          show-overflow-tooltip
       >
       </el-table-column>
       <el-table-column
           label="操作"
+          width="160"
       >
         <template slot-scope="scope">
           <el-button

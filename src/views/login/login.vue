@@ -80,13 +80,6 @@ export default {
         if(r.status === 200){
           window.localStorage.setItem('token', r.data.token)
           window.localStorage.setItem('userId', r.data.uid)
-          // this.axios({
-          //   url:"/user/info",
-          //   method:"get",
-          // }).then((res)=>{
-          //   console.log(res)
-          //   window.localStorage.setItem('user', res.data.data)
-          // })
           window.location.href = "/"
         }
       })

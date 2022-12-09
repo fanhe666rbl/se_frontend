@@ -11,7 +11,10 @@
     <div class="content-right">
       <Info v-if="page === 'Info'"></Info>
       <el-button v-if="userLevel === -1" @click="dialogVisible = true">申请加入课程</el-button>
-      <Members v-if="page === 'Members'"></Members>
+      <div v-if="page === 'Members'">
+        <Members v-if="userLevel < 1"></Members>
+        <AdminMembers v-else></AdminMembers>
+      </div>
       <Homework v-if="page === 'Homework'"></Homework>
       <Apply v-if="page === 'Apply'"></Apply>
 
@@ -40,9 +43,10 @@ import Info from "@/components/ClassInfo/Info";
 import Members from "@/components/ClassInfo/Members";
 import Homework from "@/components/ClassInfo/Homework";
 import Apply from "@/components/ClassInfo/Apply";
+import AdminMembers from "@/components/ClassInfo/AdminMembers";
 export default {
   name: "ClassView",
-  components: {Apply, Homework, Members, Info, TagsLeft, Header},
+  components: {AdminMembers, Apply, Homework, Members, Info, TagsLeft, Header},
   data() {
     return {
       active: 0,

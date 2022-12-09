@@ -65,8 +65,9 @@ export default {
   flex-wrap: wrap;
   background-color: #e9eef3;
   color: #333;
-  width: 100%;
-  height: auto;
+  width: 72%;
+  margin: -10px auto;
+  min-height: 940px;
 }
 .courseList {
   display: inline-block;

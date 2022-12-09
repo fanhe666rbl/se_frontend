@@ -13,7 +13,6 @@
 
 <script>
 import ClassCard from "@/components/ClassList/ClassCard";
-import axios from "axios";
 import Header from "@/components/Header";
 export default {
   name: "ClassList",
@@ -24,12 +23,11 @@ export default {
     }
   },
   mounted() {
-    // window.localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJja3JAdGVzdC5jb20iLCJpZCI6NywiaWF0IjoxNjcwMjA4MjIwLCJqdGkiOiIxZTJkNzBiZi02M2EwLTRmYzItOThhZC1lODI5M2ExNTZmZGEifQ.EhZsYqGqrdtcctt-PgZp1Y_BFjcdH_5EzZr3Peic5T4')
     this.loadClassList()
   },
   methods:{
     loadClassList(){
-      axios.get(
+      this.axios.get(
           "/class/list",
       ).then((res)=>{
         console.log('class', res)
@@ -47,8 +45,9 @@ export default {
   flex-wrap: wrap;
   background-color: #E9EEF3;
   color: #333;
-  width: 100%;
-  height: auto;
+  width: 72%;
+  margin: -10px auto;
+  min-height: 940px;
 }
 .courseList {
   display: inline-block;
