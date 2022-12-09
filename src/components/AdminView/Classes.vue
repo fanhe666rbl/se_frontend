@@ -103,6 +103,7 @@ export default {
     return {
       dialogVisible:false,
       classEditing:{},
+      edit_model:'add',
       class_list:[
         {
           id:0,
@@ -128,7 +129,39 @@ export default {
   },
   methods: {
     updateClass(){
-      alert(this.classEditing.name)
+      if (this.edit_model === 'add') {
+        this.axios({
+          url:"/admin/class/instance",
+          method:"post",
+          data:{
+            name: this.classEditing.name,
+            courseId: this.classEditing.courseId,
+            description: this.classEditing.description,
+            access: this.classEditing.access,
+            order: this.classEditing.order,
+          },
+        }).then((res)=>{
+          console.log('0aaa', res)
+          this.getClasses()
+          this.dialogVisible = false;
+        })
+      }else if (this.edit_model === 'edit') {
+        this.axios({
+          url:"/admin/class/"+this.classEditing.id+"/info",
+          method:"put",
+          data:{
+            name: this.classEditing.name,
+            courseId: this.classEditing.courseId,
+            description: this.classEditing.description,
+            access: this.classEditing.access,
+            order: this.classEditing.order,
+          },
+        }).then((res)=>{
+          console.log(res)
+          this.getClasses()
+          this.dialogVisible = false;
+        })
+      }
     },
     handleClose(done) {
       this.$confirm('确认关闭？')
@@ -149,13 +182,15 @@ export default {
     },
     handleEdit(index, row) {
       this.classEditing = row
+      this.edit_mode = 'edit'
       this.dialogVisible = true;
       console.log('editing', index, row);
     },
     handleAdd(index, row) {
-      console.log('adding', index, row);
       this.classEditing = {}
+      this.edit_mode = 'add'
       this.dialogVisible = true;
+      console.log('adding', index, row);
     },
     handleDelete(index, row) {
       console.log(index, row);
@@ -164,7 +199,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        axios({
+        this.axios({
           url:"/admin/class/"+row.id,
           method:"delete",
         }).then((res)=>{
