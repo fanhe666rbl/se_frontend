@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <h3>{{ course.name }}</h3>
+      {{ course.name }}
     </div>
     <div class="card-body">
       {{ course.info }}
@@ -78,10 +78,15 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  padding: 1rem;
   background-color: var(--green-color);
   color: #fff;
   text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: auto;
+  text-overflow: ellipsis;
 }
 
 .card-body {
